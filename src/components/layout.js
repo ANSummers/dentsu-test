@@ -10,7 +10,6 @@ import {
 } from "./layout.module.css";
 
 const Layout = ({ pageTitle, pageHeading, children }) => {
-  // console.log(data);
   return (
     <div className={container}>
       <title>{pageTitle} |</title>

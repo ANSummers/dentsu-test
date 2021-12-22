@@ -32,14 +32,14 @@ class AboutPage extends React.Component {
     super(props);
     this.svgRef = React.createRef(null);
 
-    this.margin = { top: 20, right: 20, bottom: 20, left: 100 };
+    this.margin = { top: 100, right: 20, bottom: 20, left: 100 };
 
     this.step = 40;
 
     this.height = 800;
 
     this.state = {
-      flowId: 2,
+      flowId: 3,
       isLoaded: false,
     };
   }
@@ -122,7 +122,7 @@ class AboutPage extends React.Component {
     const label = svg
       .append("g")
       .attr("font-family", "sans-serif")
-      .attr("font-size", 12)
+      .attr("font-size", 15)
       .attr("text-anchor", "end")
       .selectAll("g")
       .data(graph.nodes)
@@ -136,13 +136,13 @@ class AboutPage extends React.Component {
           .append("text")
           .attr("x", -6)
           .attr("dy", "0.35em")
-          .attr("fill", (d) => d3.lab(color(d.id)).darker(2))
+          .attr("fill", (d) => d3.lab(color(d.id)).darker(1))
           .text((d) => d.name)
       )
       .call((g) =>
         g
           .append("circle")
-          .attr("r", 3)
+          .attr("r", 4)
           .attr("fill", (d) => color(d.id))
       );
 
@@ -162,10 +162,11 @@ class AboutPage extends React.Component {
     const overlay = svg
       .append("g")
       .attr("fill", "none")
-      .attr("pointer-events", "all")
+      .attr("pointer-events", "visibleFill")
       .selectAll("rect")
       .data(graph.nodes)
       .join("rect")
+
       .attr("width", this.margin.left + 40)
       .attr("height", this.step)
       .attr("y", (d) => y(d.id) - this.step / 2)
@@ -227,17 +228,20 @@ class AboutPage extends React.Component {
       <div>
         <Layout pageTitle="About" pageHeading="About Flows">
           <h2>Current Flows available</h2>
-          <p>
-            Endpoint 1:
-            https://orchestrationflowappservice.azurewebsites.net/flow -
-            provides information about the available flows.
-          </p>
-        </Layout>
 
-        <div className="about_diagram">
-          this is where the About Diagram will go.
-          <svg ref={this.svgRef} width={800} height={800} />
-        </div>
+          <a>
+            <h3>
+              Flows are sorted from fastest to slowest in the arc diagram below
+            </h3>
+            <svg
+              ref={this.svgRef}
+              onMouseOver={this.onMouseOver}
+              onMouseOut={this.onMouseOut}
+              width={800}
+              height={800}
+            />
+          </a>
+        </Layout>
       </div>
     );
   }

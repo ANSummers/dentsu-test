@@ -6,14 +6,8 @@ const ComparePage = () => {
     <div>
       <Layout pageTitle="Compare" pageHeading="Compare">
         <h2>Select and Compare Flow by id</h2>
-        <p>
-          "Endpoint 2: provides information regarding process relationships
-          within flow selected by id."
-        </p>
+        <h3>...Coming soon</h3>
       </Layout>
-      <div className="compare_diagram">
-        this is where the Compare Diagram will go.
-      </div>
     </div>
   );
 };
